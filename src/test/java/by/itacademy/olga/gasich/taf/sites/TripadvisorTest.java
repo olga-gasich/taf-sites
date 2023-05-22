@@ -7,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 public class TripadvisorTest {
 
     ChromeDriver driver;
@@ -22,7 +21,7 @@ public class TripadvisorTest {
     }
 
     @Test
-    public void testFillFormWithEmptyEmailAndSomePassword() {
+    public void testFillFormWithEmptyEmailAndPassword() {
 
         TripadvisorPage page = new TripadvisorPage();
 
@@ -32,9 +31,6 @@ public class TripadvisorTest {
         driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
         WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
         btnContinueWithEmail.click();
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
 
         WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
         btnSubmit.click();
@@ -52,8 +48,9 @@ public class TripadvisorTest {
         WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
         btnContinueWithEmail.click();
 
+
         WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@@gmail.com");
+        inputEmailAddress.sendKeys("test@@gmail.com");
 
         WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
         btnSubmit.click();
@@ -72,7 +69,7 @@ public class TripadvisorTest {
         btnContinueWithEmail.click();
 
         WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com");
+        inputEmailAddress.sendKeys("test@gmail.com");
 
         WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
         btnSubmit.click();
@@ -91,7 +88,7 @@ public class TripadvisorTest {
         btnContinueWithEmail.click();
 
         WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com");
+        inputEmailAddress.sendKeys("test@gmail.com");
 
         WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
         inputPsw.sendKeys("123456");
