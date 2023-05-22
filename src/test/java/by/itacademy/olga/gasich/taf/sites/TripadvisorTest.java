@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+
 public class TripadvisorTest {
 
     ChromeDriver driver;
@@ -47,7 +48,6 @@ public class TripadvisorTest {
         driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
         WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
         btnContinueWithEmail.click();
-
 
         WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
         inputEmailAddress.sendKeys("test@@gmail.com");
