@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class PizzatempoTest {
 
     ChromeDriver driver;
+    PizzatempoPage page;
 
     @BeforeEach
     public void warmUp() {
@@ -19,66 +20,42 @@ public class PizzatempoTest {
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.pizzatempo.by/");
+        page = new PizzatempoPage(driver);
     }
 
     @Test
-    public void testFillFormWithEmptyEmailAndEmptyPassword() {
+    public void testFillFormWithEmptyEmailAndPassword() {
 
-        PizzatempoPage page = new PizzatempoPage();
-
-        WebElement btnSearch = driver.findElement(By.xpath(page.btnSearchXpath));
-        btnSearch.click();
+        page.clickBtnSearch();
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        PizzatempoPage page = new PizzatempoPage();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com.");
-
-        WebElement btnSearch = driver.findElement(By.xpath(page.btnSearchXpath));
-        btnSearch.click();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.clickBtnSearch();
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndSomePassword() {
 
-        PizzatempoPage page = new PizzatempoPage();
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
-
-        WebElement btnSearch = driver.findElement(By.xpath(page.btnSearchXpath));
-        btnSearch.click();
+        page.fillInputPsw(Util.generatePassword(10));
+        page.clickBtnSearch();
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        PizzatempoPage page = new PizzatempoPage();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com");
-
-        WebElement btnSearch = driver.findElement(By.xpath(page.btnSearchXpath));
-        btnSearch.click();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.clickBtnSearch();
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        PizzatempoPage page = new PizzatempoPage();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com");
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
-
-        WebElement btnSearch = driver.findElement(By.xpath(page.btnSearchXpath));
-        btnSearch.click();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputPsw(Util.generatePassword(10));
+        page.clickBtnSearch();
     }
 
     @AfterEach
