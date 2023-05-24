@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 public class DominosTest {
 
     ChromeDriver driver;
+    DominosPage page;
 
     @BeforeEach
     public void warmUp() {
@@ -21,52 +22,31 @@ public class DominosTest {
         chromeOptions.addArguments("--disable-cache");
         driver = new ChromeDriver(chromeOptions);
         driver.get("https://dominos.by/");
+        page = new DominosPage(driver);
     }
 
     @Test
     public void testFillFormWithInvalidEmailAndSomePassword() {
 
-        DominosPage page = new DominosPage();
-
-        WebElement btnCrossOnModal = driver.findElement(By.cssSelector(page.btnCrossOnModalCss));
-        btnCrossOnModal.click();
-
-        WebElement btnEnter = driver.findElement(By.xpath(page.btnEnterXpath));
-        btnEnter.click();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail..com");
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnCrossOnModal();
+        page.clickBtnEnter();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputPsw(Util.generatePassword(10));
+        page.clickBtnSubmit();
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        DominosPage page = new DominosPage();
-
-        WebElement btnCrossOnModal = driver.findElement(By.cssSelector(page.btnCrossOnModalCss));
-        btnCrossOnModal.click();
-
-        WebElement btnEnter = driver.findElement(By.xpath(page.btnEnterXpath));
-        btnEnter.click();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("olagasich@gmail.com");
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnCrossOnModal();
+        page.clickBtnEnter();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputPsw(Util.generatePassword(10));
+        page.clickBtnSubmit();
     }
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+    driver.quit();
     }
 }
