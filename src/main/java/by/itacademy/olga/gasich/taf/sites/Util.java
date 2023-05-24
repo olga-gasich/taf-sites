@@ -15,7 +15,7 @@ public class Util {
     }
     public static String generatePassword(int numberOfChars) {
 
-        String[] password = {"a", "b", "c", "d","r", " ", "!", "@", "#", "%", "$", "&", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        String[] password = {"a", "b", "c", "d","r", " ", "!", "@", "#", "%", "$", "&", "*", ".", ",", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
         String result = "";
         for (int i = 0; i < numberOfChars; i++) {
             int j;
