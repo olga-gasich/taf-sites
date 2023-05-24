@@ -3,14 +3,13 @@ package by.itacademy.olga.gasich.taf.sites;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TripadvisorTest {
 
     ChromeDriver driver;
+    TripadvisorPage page;
 
     @BeforeEach
     public void warmUp() {
@@ -19,82 +18,43 @@ public class TripadvisorTest {
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
         driver.get("https://www.tripadvisor.com/");
+        page = new TripadvisorPage(driver);
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
 
-        TripadvisorPage page = new TripadvisorPage();
-
-        WebElement btnSignIn = driver.findElement(By.xpath(page.btnSignInXpath));
-        btnSignIn.click();
-
-        driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
-        WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
-        btnContinueWithEmail.click();
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnSignIn();
+        page.clickBtnContinueWithEmail();
+        page.clickBtnSubmit();
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        TripadvisorPage page = new TripadvisorPage();
-
-        WebElement btnSignIn = driver.findElement(By.xpath(page.btnSignInXpath));
-        btnSignIn.click();
-
-        driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
-        WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
-        btnContinueWithEmail.click();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("test@@gmail.com");
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnSignIn();
+        page.clickBtnContinueWithEmail();
+        page.fillInputEmailAddress(Util.generatePassword(10));
+        page.clickBtnSubmit();
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        TripadvisorPage page = new TripadvisorPage();
-
-        WebElement btnSignIn = driver.findElement(By.xpath(page.btnSignInXpath));
-        btnSignIn.click();
-
-        driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
-        WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
-        btnContinueWithEmail.click();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("test@gmail.com");
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnSignIn();
+        page.clickBtnContinueWithEmail();
+        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.clickBtnSubmit();
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        TripadvisorPage page = new TripadvisorPage();
-
-        WebElement btnSignIn = driver.findElement(By.xpath(page.btnSignInXpath));
-        btnSignIn.click();
-
-        driver.switchTo().frame(driver.findElement(By.cssSelector(page.iframeCsspath)));
-        WebElement btnContinueWithEmail = driver.findElement(By.xpath(page.btnContinueWithEmailXpath));
-        btnContinueWithEmail.click();
-
-        WebElement inputEmailAddress = driver.findElement(By.xpath(page.inputEmailAddressXpath));
-        inputEmailAddress.sendKeys("test@gmail.com");
-
-        WebElement inputPsw = driver.findElement(By.xpath(page.inputPswXpath));
-        inputPsw.sendKeys("123456");
-
-        WebElement btnSubmit = driver.findElement(By.xpath(page.btnSubmitXpath));
-        btnSubmit.click();
+        page.clickBtnSignIn();
+        page.clickBtnContinueWithEmail();
+        page.fillInputEmailAddress(Util.generateEmail(16));
+        page.fillInputPsw(Util.generatePassword(8));
+        page.clickBtnSubmit();
     }
 
     @AfterEach

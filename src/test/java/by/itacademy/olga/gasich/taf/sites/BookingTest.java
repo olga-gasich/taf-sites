@@ -34,7 +34,7 @@ public class BookingTest {
     public void testFillFormWithInvalidEmail() {
 
         page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generatePassword(10));
+        page.fillInputEmailAddress(Util.generatePassword(12));
         page.clickBtnContinueWithEmail();
     }
 
@@ -42,7 +42,7 @@ public class BookingTest {
     public void testFillFormWithValidEmail() {
 
         page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputEmailAddress(Util.generateEmail(20));
         page.clickBtnContinueWithEmail();
     }
 
@@ -50,7 +50,7 @@ public class BookingTest {
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
         page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputEmailAddress(Util.generateEmail(18));
         page.clickBtnContinueWithEmail();
         page.clickBtnSubmit();
     }
@@ -59,9 +59,9 @@ public class BookingTest {
     public void testFillFormWithValidEmailAndSomePassword() {
 
         page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputEmailAddress(Util.generateEmail(16));
         page.clickBtnContinueWithEmail();
-        page.fillInputPsw(Util.generatePassword(10));
+        page.fillInputPsw(Util.generatePassword(9));
         page.clickBtnSubmit();
     }
 
