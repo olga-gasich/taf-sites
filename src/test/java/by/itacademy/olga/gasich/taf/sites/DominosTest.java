@@ -28,7 +28,7 @@ public class DominosTest {
 
         page.clickBtnCrossOnModal();
         page.clickBtnEnter();
-        page.fillInputEmailAddress(Util.generateEmail(15));
+        page.fillInputEmailAddress(Util.generatePassword(14));
         page.fillInputPsw(Util.generatePassword(10));
         page.clickBtnSubmit();
     }

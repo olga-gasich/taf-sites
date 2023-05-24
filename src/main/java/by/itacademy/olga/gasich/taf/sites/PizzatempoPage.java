@@ -33,4 +33,3 @@ public class PizzatempoPage {
         inputPsw.sendKeys(str);
     }
 }
-
