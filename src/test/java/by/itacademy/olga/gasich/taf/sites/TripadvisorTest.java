@@ -47,7 +47,7 @@ public class TripadvisorTest {
 
         step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
-    
+
     @AfterEach
     public void tearDown() {
         driver.quit();

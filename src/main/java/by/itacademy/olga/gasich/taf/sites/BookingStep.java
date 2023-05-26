@@ -13,6 +13,13 @@ public class BookingStep {
         page = new BookingPage(driver);
     }
 
+    public void fillEmailFormAndSubmit(String name){
+
+        page.clickBtnSignInOrRegister();
+        page.fillInputEmailAddress(name);
+        page.clickBtnContinueWithEmail();
+    }
+
     public void fillLoginFormAndSubmit(String name, String password){
 
         page.clickBtnSignInOrRegister();

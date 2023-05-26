@@ -29,13 +29,13 @@ public class BookingTest {
     @Test
     public void testFillFormWithEmptyEmail() {
 
-        step.fillLoginFormAndSubmit("", "");
+        step.fillEmailFormAndSubmit("");
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        step.fillLoginFormAndSubmit(Util.generatePassword(), "");
+        step.fillEmailFormAndSubmit(Util.generatePassword());
     }
 
     @Test
