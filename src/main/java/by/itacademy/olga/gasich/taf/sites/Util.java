@@ -2,25 +2,24 @@ package by.itacademy.olga.gasich.taf.sites;
 
 public class Util {
 
-    public static String generateEmail(int numberOfChars) {
+    public static String generateEmail() {
 
-        String[] email = {"a", "b", "c", "d", "e", "j", "k", "l", "m", "n", "o", "e", "p", "q", "i", "r", "s"};
-        String result = "";
-        for (int i = 0; i < numberOfChars; i++) {
-            int j;
-            j = (int) Math.floor(Math.random() * email.length);
-            result = result.concat(email[j]);
-        }
-        return(result + "@gmail.com");
+        String[] elements = {"a", "b", "c", "d", "e", "j", "k", "l", "m", "n", "o", "e", "p", "q", "i", "r", "s"};
+        return selectRandomElement (elements, 8) + "@gmail.com";
     }
-    public static String generatePassword(int numberOfChars) {
+    public static String generatePassword() {
 
-        String[] password = {"a", "b", "c", "d","r", " ", "!", "@", "#", "%", "$", "&", "*", ".", ",", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        String[] elements = {"a", "b", "c", "d","r", " ", "!", "@", "#", "%", "$", "&", "*", ".", ",", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        return selectRandomElement (elements, 15);
+    }
+
+    private static String selectRandomElement(String[]array, int numberOfChars) {
+
         String result = "";
         for (int i = 0; i < numberOfChars; i++) {
             int j;
-            j = (int) Math.floor(Math.random() * password.length);
-            result = result.concat(password[j]);
+            j = (int) Math.floor(Math.random() * array.length);
+            result = result.concat(array[j]);
         }
         return(result);
     }

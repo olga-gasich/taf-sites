@@ -10,6 +10,7 @@ public class PizzatempoTest {
 
     ChromeDriver driver;
     PizzatempoPage page;
+    PizzatempoStep step;
 
     @BeforeEach
     public void warmUp() {
@@ -17,43 +18,40 @@ public class PizzatempoTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
-        driver.get("https://www.pizzatempo.by/");
         page = new PizzatempoPage(driver);
+        step = new PizzatempoStep(driver);
+        driver.manage().window().maximize();
+        page.openBaseURL();
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
 
-        page.clickBtnSearch();
+        step.fillLoginFormAndSubmit("","");
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        page.fillInputEmailAddress(Util.generatePassword(18));
-        page.clickBtnSearch();
+        step.fillLoginFormAndSubmit(Util.generatePassword(),"");
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndSomePassword() {
 
-        page.fillInputPsw(Util.generatePassword(6));
-        page.clickBtnSearch();
+        step.fillLoginFormAndSubmit("",Util.generatePassword());
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        page.fillInputEmailAddress(Util.generateEmail(14));
-        page.clickBtnSearch();
+        step.fillLoginFormAndSubmit(Util.generateEmail(),"");
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        page.fillInputEmailAddress(Util.generateEmail(17));
-        page.fillInputPsw(Util.generatePassword(10));
-        page.clickBtnSearch();
+        step.fillLoginFormAndSubmit(Util.generateEmail(),Util.generatePassword());
     }
 
     @AfterEach
