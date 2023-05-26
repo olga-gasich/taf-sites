@@ -8,10 +8,16 @@ public class DominosPage {
 
     private ChromeDriver driver;
     private String btnCrossOnModalCss = "body > div.custom-modal.custom-modal--size-content.custom-modal--padding-none.custom-modal--bg-transparent > div.custom-modal__content-holder > button > span > span.custom-button__content-children > svg";
-    private String btnEnterXpath = "//*[@id='app-root']/div/div[1]/div[1]/div/div[4]/div/div/div[3]/button/span/span[2]";
-    private String inputEmailAddressXpath = "/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/div[1]/input";
-    private String inputPswXpath = "/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/div[2]/input";
+    private String btnEnterXpath = "//span[text()='Войти']";
+    private String inputEmailAddressName = "email";
+    private String inputPswName = "password";
     private String btnSubmitXpath = "/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/button";
+    private String baseURL = "https://dominos.by/";
+
+    public void openBaseURL() {
+
+        driver.get(baseURL);
+    }
 
     public DominosPage(ChromeDriver newDriver){
         driver = newDriver;
@@ -31,13 +37,13 @@ public class DominosPage {
 
     public void fillInputEmailAddress(String str){
 
-        WebElement inputEmailAddress = driver.findElement(By.xpath(inputEmailAddressXpath));
+        WebElement inputEmailAddress = driver.findElement(By.name(inputEmailAddressName));
         inputEmailAddress.sendKeys(str);
     }
 
     public void fillInputPsw(String str){
 
-        WebElement inputPsw = driver.findElement(By.xpath(inputPswXpath));
+        WebElement inputPsw = driver.findElement(By.name(inputPswName));
         inputPsw.sendKeys(str);
     }
 

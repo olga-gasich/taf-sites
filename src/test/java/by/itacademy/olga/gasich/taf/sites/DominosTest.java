@@ -10,6 +10,7 @@ public class DominosTest {
 
     ChromeDriver driver;
     DominosPage page;
+    DominosStep step;
 
     @BeforeEach
     public void warmUp() {
@@ -19,28 +20,22 @@ public class DominosTest {
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-cache");
         driver = new ChromeDriver(chromeOptions);
-        driver.get("https://dominos.by/");
         page = new DominosPage(driver);
+        step = new DominosStep(driver);
+        driver.manage().window().maximize();
+        page.openBaseURL();
     }
 
     @Test
     public void testFillFormWithInvalidEmailAndSomePassword() {
 
-        page.clickBtnCrossOnModal();
-        page.clickBtnEnter();
-        page.fillInputEmailAddress(Util.generatePassword(14));
-        page.fillInputPsw(Util.generatePassword(10));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generatePassword(), Util.generatePassword());
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        page.clickBtnCrossOnModal();
-        page.clickBtnEnter();
-        page.fillInputEmailAddress(Util.generateEmail(15));
-        page.fillInputPsw(Util.generatePassword(10));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
 
     @AfterEach
