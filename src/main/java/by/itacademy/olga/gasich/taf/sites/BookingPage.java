@@ -11,13 +11,20 @@ public class BookingPage {
 
     private ChromeDriver driver;
     private String btnSignInOrRegisterXpath = "//*[@id='b2indexPage']/div[21]/div/div/div/div[2]/div/a/span";
-    private String inputEmailAddressXpath = "//*[@id='username']";
-    private String btnContinueWithEmailXpath = "//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/div[3]/button";
-    private String inputPswXpath = "//*[@id='password']";
-    private String btnSubmitXpath = "//*[@id='root']/div/div/div/div[2]/div[1]/div/div/div/div/div/div/form/div[2]/button";
+    private String inputEmailAddressId = "username";
+    private String btnContinueWithEmailXpath = "//span[text()='Продолжить через электронную почту']";
+    private String inputPswId = "new_password";
+    private String inputConfirmPswId = "confirmed_password";
+    private String btnSubmitXpath = "//span[text()='Создать аккаунт']";
+    private String baseURL = "https://www.booking.com/";
 
     public BookingPage(ChromeDriver newDriver){
         driver = newDriver;
+    }
+
+    public void openBaseURL() {
+
+        driver.get(baseURL);
     }
 
     public void clickBtnSignInOrRegister(){
@@ -29,7 +36,7 @@ public class BookingPage {
 
     public void fillInputEmailAddress(String str){
 
-        WebElement inputEmailAddress = driver.findElement(By.xpath(inputEmailAddressXpath));
+        WebElement inputEmailAddress = driver.findElement(By.id(inputEmailAddressId));
         inputEmailAddress.sendKeys(str);
     }
 
@@ -42,8 +49,14 @@ public class BookingPage {
     public void fillInputPsw(String str){
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement inputPsw = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(inputPswXpath)));
+        WebElement inputPsw = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(inputPswId)));
         inputPsw.sendKeys(str);
+    }
+
+    public void fillInputConfirmPsw(String str){
+
+        WebElement inputConfirmPsw = driver.findElement(By.id(inputConfirmPswId));
+        inputConfirmPsw.sendKeys(str);
     }
 
     public void clickBtnSubmit(){

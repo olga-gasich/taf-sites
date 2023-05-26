@@ -10,6 +10,7 @@ public class BookingTest {
 
     ChromeDriver driver;
     BookingPage page;
+    BookingStep step;
 
     @BeforeEach
     public void warmUp() {
@@ -19,50 +20,40 @@ public class BookingTest {
         chromeOptions.addArguments("--incognito");
         chromeOptions.addArguments("--disable-cache");
         driver = new ChromeDriver(chromeOptions);
-        driver.get("https://www.booking.com/");
         page = new BookingPage(driver);
+        step = new BookingStep(driver);
+        driver.manage().window().maximize();
+        page.openBaseURL();
     }
 
     @Test
     public void testFillFormWithEmptyEmail() {
 
-        page.clickBtnSignInOrRegister();
-        page.clickBtnContinueWithEmail();
+        step.fillLoginFormAndSubmit("", "");
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generatePassword(12));
-        page.clickBtnContinueWithEmail();
+        step.fillLoginFormAndSubmit(Util.generatePassword(), "");
     }
 
     @Test
     public void testFillFormWithValidEmail() {
 
-        page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(20));
-        page.clickBtnContinueWithEmail();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(18));
-        page.clickBtnContinueWithEmail();
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        page.clickBtnSignInOrRegister();
-        page.fillInputEmailAddress(Util.generateEmail(16));
-        page.clickBtnContinueWithEmail();
-        page.fillInputPsw(Util.generatePassword(9));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
 
     @AfterEach
