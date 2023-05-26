@@ -13,9 +13,15 @@ public class TripadvisorPage {
     private String inputEmailAddressXpath = "//*[@id='regSignIn.email']";
     private String inputPswXpath = "//*[@id='regSignIn.password']";
     private String btnSubmitXpath = "//*[@id='regSignIn']/div[4]/button[1]";
+    private String baseURL = "https://www.tripadvisor.com/";
 
     public TripadvisorPage(ChromeDriver newDriver){
         driver = newDriver;
+    }
+
+    public void openBaseURL() {
+
+        driver.get(baseURL);
     }
 
     public void clickBtnSignIn(){

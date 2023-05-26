@@ -10,6 +10,7 @@ public class TripadvisorTest {
 
     ChromeDriver driver;
     TripadvisorPage page;
+    TripadvisorStep step;
 
     @BeforeEach
     public void warmUp() {
@@ -17,46 +18,36 @@ public class TripadvisorTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
-        driver.get("https://www.tripadvisor.com/");
         page = new TripadvisorPage(driver);
+        step = new TripadvisorStep(driver);
+        driver.manage().window().maximize();
+        page.openBaseURL();
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
 
-        page.clickBtnSignIn();
-        page.clickBtnContinueWithEmail();
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit("", "");
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        page.clickBtnSignIn();
-        page.clickBtnContinueWithEmail();
-        page.fillInputEmailAddress(Util.generatePassword(10));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generatePassword(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        page.clickBtnSignIn();
-        page.clickBtnContinueWithEmail();
-        page.fillInputEmailAddress(Util.generateEmail(15));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        page.clickBtnSignIn();
-        page.clickBtnContinueWithEmail();
-        page.fillInputEmailAddress(Util.generateEmail(16));
-        page.fillInputPsw(Util.generatePassword(8));
-        page.clickBtnSubmit();
+        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
-
+    
     @AfterEach
     public void tearDown() {
         driver.quit();
