@@ -1,5 +1,7 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.pages;
 
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +12,8 @@ public class PizzatempoPage {
     private String inputEmailAddressName = "astroauth_login";
     private String inputPswName = "astroauth_pass";
     private String btnSearchName = "astroauth_submit";
+    private String AlertMessage = "Заполните форму";
+    private String errorXpath = "//*[@id='alert']/div[2]/div[2]";
     private String baseURL = "https://www.pizzatempo.by/";
 
     public PizzatempoPage(ChromeDriver newDriver){
@@ -37,5 +41,21 @@ public class PizzatempoPage {
 
         WebElement inputPsw = driver.findElement(By.name(inputPswName));
         inputPsw.sendKeys(str);
+    }
+
+    public String getAlert() {
+
+        Alert alert = driver.switchTo().alert();
+        String AlertMessage = alert.getText();
+        return AlertMessage;
+    }
+
+    public void getError(){
+
+        WebElement actError = driver.findElement(By.xpath(errorXpath));
+        String actErrorMessage = actError.getText();
+        String expErrorMessage = "Неверно указано имя пользователя или пароль.\n" +
+                "Ok";
+        Assertions.assertEquals(expErrorMessage, actErrorMessage);
     }
 }

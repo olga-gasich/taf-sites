@@ -1,5 +1,6 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.steps;
 
+import by.itacademy.olga.gasich.taf.sites.pages.TripadvisorPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TripadvisorStep {

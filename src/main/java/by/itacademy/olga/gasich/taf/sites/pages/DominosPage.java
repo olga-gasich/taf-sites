@@ -1,5 +1,6 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.pages;
 
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,6 +13,7 @@ public class DominosPage {
     private String inputEmailAddressName = "email";
     private String inputPswName = "password";
     private String btnSubmitXpath = "/html/body/div[4]/div[2]/div/div/div/div[2]/div[2]/div/form/div/button";
+    private String errorXpath = "//div[@class='notification__content']]";
     private String baseURL = "https://dominos.by/";
 
     public void openBaseURL() {
@@ -51,5 +53,13 @@ public class DominosPage {
 
         WebElement btnSubmit = driver.findElement(By.xpath(btnSubmitXpath));
         btnSubmit.click();
+    }
+
+    public void getError(){
+
+        WebElement actError = driver.findElement(By.xpath(errorXpath));
+        String actErrorMessage = actError.getText();
+        String expErrorMessage = "Неверный логин или пароль";
+        Assertions.assertEquals(expErrorMessage, actErrorMessage);
     }
 }

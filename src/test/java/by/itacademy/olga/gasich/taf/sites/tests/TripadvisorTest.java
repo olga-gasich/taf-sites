@@ -1,16 +1,19 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.tests;
 
+import by.itacademy.olga.gasich.taf.sites.pages.TripadvisorPage;
+import by.itacademy.olga.gasich.taf.sites.steps.TripadvisorStep;
+import by.itacademy.olga.gasich.taf.sites.utils.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class PizzatempoTest {
+public class TripadvisorTest {
 
     ChromeDriver driver;
-    PizzatempoPage page;
-    PizzatempoStep step;
+    TripadvisorPage page;
+    TripadvisorStep step;
 
     @BeforeEach
     public void warmUp() {
@@ -18,8 +21,8 @@ public class PizzatempoTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
-        page = new PizzatempoPage(driver);
-        step = new PizzatempoStep(driver);
+        page = new TripadvisorPage(driver);
+        step = new TripadvisorStep(driver);
         driver.manage().window().maximize();
         page.openBaseURL();
     }
@@ -27,31 +30,25 @@ public class PizzatempoTest {
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
 
-        step.fillLoginFormAndSubmit("","");
+        step.fillLoginFormAndSubmit("", "");
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        step.fillLoginFormAndSubmit(Util.generatePassword(),"");
-    }
-
-    @Test
-    public void testFillFormWithEmptyEmailAndSomePassword() {
-
-        step.fillLoginFormAndSubmit("",Util.generatePassword());
+        step.fillLoginFormAndSubmit(Util.generatePassword(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        step.fillLoginFormAndSubmit(Util.generateEmail(),"");
+        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        step.fillLoginFormAndSubmit(Util.generateEmail(),Util.generatePassword());
+        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
 
     @AfterEach

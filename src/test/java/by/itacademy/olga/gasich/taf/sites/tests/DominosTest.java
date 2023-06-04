@@ -1,5 +1,8 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.tests;
 
+import by.itacademy.olga.gasich.taf.sites.pages.DominosPage;
+import by.itacademy.olga.gasich.taf.sites.steps.DominosStep;
+import by.itacademy.olga.gasich.taf.sites.utils.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,13 +32,13 @@ public class DominosTest {
     @Test
     public void testFillFormWithInvalidEmailAndSomePassword() {
 
-        step.fillLoginFormAndSubmit(Util.generatePassword(), Util.generatePassword());
+        step.fillLoginFormAndSubmitWithIncorrectData(Util.generatePassword(), Util.generatePassword());
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
+        step.fillLoginFormAndSubmitWithCorrectData(Util.generateEmail(), Util.generatePassword());
     }
 
     @AfterEach

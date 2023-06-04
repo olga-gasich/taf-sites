@@ -1,4 +1,4 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.utils;
 
 public class Util {
 

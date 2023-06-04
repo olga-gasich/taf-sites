@@ -1,5 +1,8 @@
-package by.itacademy.olga.gasich.taf.sites;
+package by.itacademy.olga.gasich.taf.sites.tests;
 
+import by.itacademy.olga.gasich.taf.sites.pages.BookingPage;
+import by.itacademy.olga.gasich.taf.sites.steps.BookingStep;
+import by.itacademy.olga.gasich.taf.sites.utils.Util;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,7 +32,7 @@ public class BookingTest {
     @Test
     public void testFillFormWithEmptyEmail() {
 
-        step.fillEmailFormAndSubmit("");
+        step.dontFillEmailFormAndSubmit("");
     }
 
     @Test
@@ -39,21 +42,15 @@ public class BookingTest {
     }
 
     @Test
-    public void testFillFormWithValidEmail() {
-
-        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
-    }
-
-    @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
+        step.fillLoginFormWithEmptyPasswordsAndSubmit(Util.generateEmail(), "");
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
+        step.fillLoginFormWithInvalidNewPasswordAndSubmit(Util.generateEmail(), Util.generatePassword());
     }
 
     @AfterEach
