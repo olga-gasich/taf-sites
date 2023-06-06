@@ -23,22 +23,25 @@ public class PizzatempoPage {
         driver.get(baseURL);
     }
 
-    public void clickBtnSearch(){
+    public PizzatempoPage clickBtnSearch(){
 
         WebElement btnSearch = driver.findElement(By.name(btnSearchName));
         btnSearch.click();
+        return this;
     }
 
-    public void fillInputEmailAddress(String str){
+    public PizzatempoPage fillInputEmailAddress(String str){
 
         WebElement inputEmailAddress = driver.findElement(By.name(inputEmailAddressName));
         inputEmailAddress.sendKeys(str);
+        return this;
     }
 
-    public void fillInputPsw(String str){
+    public PizzatempoPage fillInputPsw(String str){
 
         WebElement inputPsw = driver.findElement(By.name(inputPswName));
         inputPsw.sendKeys(str);
+        return this;
     }
 
     public String getAlert() {

@@ -22,9 +22,9 @@ public class PizzatempoTest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
-        page = new PizzatempoPage(driver);
-        step = new PizzatempoStep(driver);
         driver.manage().window().maximize();
+        step = new PizzatempoStep(driver);
+        page = new PizzatempoPage(driver);
         page.openBaseURL();
     }
 

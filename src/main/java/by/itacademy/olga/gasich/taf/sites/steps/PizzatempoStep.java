@@ -16,8 +16,9 @@ public class PizzatempoStep {
 
     public void fillLoginFormAndSubmit(String name, String password){
 
-        page.fillInputEmailAddress(name);
-        page.fillInputPsw(password);
-        page.clickBtnSearch();
+        page = new PizzatempoPage(driver);
+        page.fillInputEmailAddress(name)
+            .fillInputPsw(password)
+            .clickBtnSearch();
     }
 }
