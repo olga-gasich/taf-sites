@@ -4,6 +4,7 @@ import by.itacademy.olga.gasich.taf.sites.pages.BookingPage;
 import by.itacademy.olga.gasich.taf.sites.steps.BookingStep;
 import by.itacademy.olga.gasich.taf.sites.utils.Util;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,25 +33,30 @@ public class BookingTest {
     @Test
     public void testFillFormWithEmptyEmail() {
 
-        step.dontFillEmailFormAndSubmit("");
+        step.fillEmailFormAndSubmit("");
+        Assertions.assertEquals("Введите электронный адрес", page.getEmptyEmailAddressError());
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
         step.fillEmailFormAndSubmit(Util.generatePassword());
+        Assertions.assertEquals("Проверьте правильность ввода.", page.getInvalidEmailAddressError());
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        step.fillLoginFormWithEmptyPasswordsAndSubmit(Util.generateEmail(), "");
+        step.fillLoginFormAndSubmit(Util.generateEmail(), "");
+        Assertions.assertEquals("Введите новый пароль.", page.getEmptyPswError());
+        Assertions.assertEquals("Введите пароль еще раз", page.getEmptyConfirmPswError());
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        step.fillLoginFormWithInvalidNewPasswordAndSubmit(Util.generateEmail(), Util.generatePassword());
+        step.fillLoginFormAndSubmit(Util.generateEmail(), Util.generatePassword());
+        Assertions.assertEquals("Пароль должен содержать как минимум одну заглавную букву", page.getInvalidPswError());
     }
 
     @AfterEach

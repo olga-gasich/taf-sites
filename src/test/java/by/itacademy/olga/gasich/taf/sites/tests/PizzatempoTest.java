@@ -4,6 +4,7 @@ import by.itacademy.olga.gasich.taf.sites.pages.PizzatempoPage;
 import by.itacademy.olga.gasich.taf.sites.steps.PizzatempoStep;
 import by.itacademy.olga.gasich.taf.sites.utils.Util;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,31 +31,37 @@ public class PizzatempoTest {
     @Test
     public void testFillFormWithEmptyEmailAndPassword() {
 
-        step.fillLoginFormWithIncorrectDataAndSubmit("","");
+        step.fillLoginFormAndSubmit("","");
+        Assertions.assertEquals("Заполните форму", page.getAlert());
     }
 
     @Test
     public void testFillFormWithInvalidEmail() {
 
-        step.fillLoginFormWithIncorrectDataAndSubmit(Util.generatePassword(),"");
+        step.fillLoginFormAndSubmit(Util.generatePassword(),"");
+        Assertions.assertEquals("Заполните форму", page.getAlert());
     }
 
     @Test
     public void testFillFormWithEmptyEmailAndSomePassword() {
 
-        step.fillLoginFormWithIncorrectDataAndSubmit("",Util.generatePassword());
+        step.fillLoginFormAndSubmit("",Util.generatePassword());
+        Assertions.assertEquals("Заполните форму", page.getAlert());
     }
 
     @Test
     public void testFillFormWithValidEmailAndEmptyPassword() {
 
-        step.fillLoginFormWithIncorrectDataAndSubmit(Util.generateEmail(),"");
+        step.fillLoginFormAndSubmit(Util.generateEmail(),"");
+        Assertions.assertEquals("Заполните форму", page.getAlert());
     }
 
     @Test
     public void testFillFormWithValidEmailAndSomePassword() {
 
-        step.fillLoginFormWithCorrectDataAndSubmit(Util.generateEmail(),Util.generatePassword());
+        step.fillLoginFormAndSubmit(Util.generateEmail(),Util.generatePassword());
+        Assertions.assertEquals("Неверно указано имя пользователя или пароль.\n" +
+                "Ok", page.getError());
     }
 
     @AfterEach

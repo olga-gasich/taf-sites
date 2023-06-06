@@ -72,43 +72,38 @@ public class BookingPage {
         btnSubmit.click();
     }
 
-    public void getEmptyEmailAddressError(){
+    public String getEmptyEmailAddressError(){
 
         WebElement emptyEmailActMessage = driver.findElement(By.xpath(emptyEmailActMessageXpath));
         String actErrorMessage = emptyEmailActMessage.getText();
-        String expErrorMessage = "Введите электронный адрес";
-        Assertions.assertEquals(expErrorMessage, actErrorMessage);
+        return actErrorMessage;
     }
 
-    public void getInvalidEmailAddressError(){
+    public String getInvalidEmailAddressError(){
 
         WebElement invalidEmailActMessage = driver.findElement(By.xpath(invalidEmailActMessageXpath));
         String actErrorMessage = invalidEmailActMessage.getText();
-        String expErrorMessage = "Проверьте правильность ввода.";
-        Assertions.assertEquals(expErrorMessage, actErrorMessage);
+        return actErrorMessage;
     }
 
-    public void getEmptyPswError(){
+    public String getEmptyPswError(){
 
         WebElement emptyPswActMessage = driver.findElement(By.xpath(emptyPswActMessageXpath));
         String actErrorMessage = emptyPswActMessage.getText();
-        String expErrorMessage = "Введите новый пароль.";
-        Assertions.assertEquals(expErrorMessage, actErrorMessage);
+        return actErrorMessage;
     }
 
-    public void getEmptyConfirmPswError(){
+    public String getEmptyConfirmPswError(){
 
         WebElement emptyConfirmPswActMessage = driver.findElement(By.xpath(emptyConfirmPswActMessageXpath));
         String actErrorMessage = emptyConfirmPswActMessage.getText();
-        String expErrorMessage = "Введите пароль еще раз";
-        Assertions.assertEquals(expErrorMessage, actErrorMessage);
+        return actErrorMessage;
     }
 
-    public void getInvalidPswError(){
+    public String getInvalidPswError(){
 
         WebElement invalidPswActMessage = driver.findElement(By.xpath(invalidPswActMessageXpath));
         String actErrorMessage = invalidPswActMessage.getText();
-        String expErrorMessage = "Пароль должен содержать как минимум одну заглавную букву";
-        Assertions.assertEquals(expErrorMessage, actErrorMessage);
+        return actErrorMessage;
     }
 }

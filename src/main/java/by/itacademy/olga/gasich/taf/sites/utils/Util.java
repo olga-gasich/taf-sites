@@ -9,7 +9,7 @@ public class Util {
     }
     public static String generatePassword() {
 
-        String[] elements = {"a", "b", "c", "d","r", " ", "!", "@", "#", "%", "$", "&", "*", ".", ",", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+        String[] elements = {"a", "b", "c", "d","r", " ", "!", "^", "#", "%", "$", "&", "*", ".", ",", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
         return selectRandomElement (elements, 15);
     }
 

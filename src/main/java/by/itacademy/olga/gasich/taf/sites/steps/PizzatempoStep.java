@@ -14,19 +14,10 @@ public class PizzatempoStep {
         page = new PizzatempoPage(driver);
     }
 
-    public void fillLoginFormWithIncorrectDataAndSubmit(String name, String password){
+    public void fillLoginFormAndSubmit(String name, String password){
 
         page.fillInputEmailAddress(name);
         page.fillInputPsw(password);
         page.clickBtnSearch();
-        page.getAlert();
-    }
-
-    public void fillLoginFormWithCorrectDataAndSubmit(String name, String password){
-
-        page.fillInputEmailAddress(name);
-        page.fillInputPsw(password);
-        page.clickBtnSearch();
-        page.getError();
     }
 }
